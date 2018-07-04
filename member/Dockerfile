@@ -24,6 +24,7 @@ WORKDIR ${JET_HOME}
 RUN curl -svf -o ${JET_HOME}/${JET_JAR} \
          -L https://repo1.maven.org/maven2/com/hazelcast/jet/hazelcast-jet/${JET_VERSION}/${JET_JAR}
 
+ADD books ${JET_HOME}/books
 
 # Download & install JCache
 RUN curl -svf -o ${JET_HOME}/${CACHE_API_JAR} \
