@@ -8,7 +8,7 @@ ARG HZ_KUBE_VERSION=1.1.0
 ARG HZ_EUREKA_VERSION=1.0.2
 
 # Build constants
-ARG JET_HOME="/opt/hazelcast-jet"
+ENV JET_HOME="/opt/hazelcast-jet"
 ARG JET_JAR="hazelcast-jet-${JET_VERSION}.jar"
 ARG CACHE_API_JAR="cache-api-${CACHE_API_VERSION}.jar"
 
@@ -51,8 +51,7 @@ RUN cd mvnw \
  && chmod -R +r $JET_HOME
 
 # Runtime constants
-ENV JAR_FILE "${JET_HOME}/submit-job/job.jar"
-ENV CLASSPATH_DEFAULT "${JET_HOME}/*:${JET_HOME}/submit-job/*"
+ENV CLASSPATH_DEFAULT "${JET_HOME}/*"
 ENV JAVA_OPTS_DEFAULT "-Djava.net.preferIPv4Stack=true"
 
 # Runtime environment variables
