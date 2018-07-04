@@ -1,2 +1,3 @@
 .idea/
 hazelcast-jet-docker.iml
+.DS_Store
