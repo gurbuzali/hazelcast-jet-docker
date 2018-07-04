@@ -1,7 +1,7 @@
 FROM openjdk:8u171-jre-alpine
 
 # Versions of Hazelcast and Hazelcast plugins
-ARG JET_VERSION=0.6.1
+ARG JET_VERSION=0.7-SNAPSHOT
 ARG HZ_AWS_VERSION=2.1.0
 ARG CACHE_API_VERSION=1.0.0
 ARG HZ_KUBE_VERSION=1.1.0
@@ -21,8 +21,10 @@ RUN mkdir -p ${JET_HOME}
 WORKDIR ${JET_HOME}
 
 # Download & install Hazelcast Jet
-RUN curl -svf -o ${JET_HOME}/${JET_JAR} \
-         -L https://repo1.maven.org/maven2/com/hazelcast/jet/hazelcast-jet/${JET_VERSION}/${JET_JAR}
+ADD ${JET_JAR} ${JET_HOME}/
+#RUN curl -svf -o ${JET_HOME}/${JET_JAR} \
+#         -L https://repo1.maven.org/maven2/com/hazelcast/jet/hazelcast-jet/${JET_VERSION}/${JET_JAR}
+
 
 # Download & install JCache
 RUN curl -svf -o ${JET_HOME}/${CACHE_API_JAR} \
