@@ -24,6 +24,7 @@ WORKDIR ${JET_HOME}
 RUN curl -svf -o ${JET_HOME}/${JET_JAR} \
          -L https://repo1.maven.org/maven2/com/hazelcast/jet/hazelcast-jet/${JET_VERSION}/${JET_JAR}
 
+ADD job.jar ${JET_HOME}/job.jar
 
 # Download & install JCache
 RUN curl -svf -o ${JET_HOME}/${CACHE_API_JAR} \
@@ -72,5 +73,5 @@ CMD ["bash", "-c", "set -euo pipefail \
       && echo \"# starting now....\" \
       && echo \"########################################\" \
       && set -x \
-      && exec java -server ${JAVA_OPTS} com.hazelcast.jet.server.JetBootstrap ${JAR_FILE} $@ \
+      && exec java -server ${JAVA_OPTS} com.hazelcast.jet.server.JetBootstrap ${JET_HOME}/job.jar $@ \
      "]
